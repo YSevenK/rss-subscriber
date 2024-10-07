@@ -1,3 +1,5 @@
-# 一个rss订阅器
-* 目前只有订阅功能
-* 地址：https://rss-subscriber-k988qhtmh-ysevenks-projects.vercel.app
+# An RSS subscriber
+- [English Version](README.md)
+- [中文版本](README_CN.md)
+* Currently, only the subscription function is available
+* Address：https://rss-subscriber-k988qhtmh-ysevenks-projects.vercel.app
