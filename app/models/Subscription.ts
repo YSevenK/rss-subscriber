@@ -58,9 +58,6 @@ const SubscriptionSchema: Schema = new Schema({
     },
 });
 
-// 确保同一邮箱不能重复订阅同一 RSS 链接
-SubscriptionSchema.index({ email: 1, rssLink: 1 }, { unique: true });
-
 // 每次更新时自动更新 `updatedAt` 字段
 SubscriptionSchema.pre('save', function (next) {
     this.updatedAt = new Date();

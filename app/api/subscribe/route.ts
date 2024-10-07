@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server';
 import connectToDatabase from '../../lib/mongodb';
 import Subscription from '../../models/Subscription';
+import { sendMail } from '../mail/route';
 
 export async function POST(req: Request) {
     const { rssLink, email } = await req.json();
@@ -15,12 +16,19 @@ export async function POST(req: Request) {
     }
 
     const subscription = new Subscription({
-        rssLink, // 修复了字段名错误
+        rssLink,
         email,
-        lastChecked: new Date(), // 之前是 `last_checked`
-        lastContent: null, // 初始为空
+        lastChecked: new Date(),
+        lastContent: null,
     });
 
     await subscription.save();
-    return NextResponse.json({ message: 'Subscription created' });
+
+    // 成功创建订阅后发送确认邮件
+    try {
+        await sendMail(email, '订阅确认', `您已成功订阅 RSS 链接: ${rssLink}`);
+        return NextResponse.json({ message: '订阅成功，并且确认邮件已发送。' });
+    } catch (error) {
+        return NextResponse.json({ error: '订阅创建成功，但邮件发送失败。' }, { status: 500 });
+    }
 }
