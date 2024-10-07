@@ -3,3 +3,4 @@
 - [中文版本](README_CN.md)
 * Currently, only the subscription function is available
 * Address：https://rss-subscriber-k988qhtmh-ysevenks-projects.vercel.app
+* Contact me：ysevenk.k7@gmail.com
