@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 import connectToDatabase from '../../lib/mongodb';
 import Subscription from '../../models/Subscription';
-import { sendMail } from '../mail/route';
+import { sendMail } from '../../utils/mail';
 
 export async function POST(req: Request) {
     const { rssLink, email } = await req.json();
